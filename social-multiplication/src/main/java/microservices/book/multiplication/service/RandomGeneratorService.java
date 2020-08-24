@@ -1,6 +1,6 @@
 package microservices.book.multiplication.service;
 
-public interface IRandomGeneratorServices {
+public interface RandomGeneratorService {
 	
 	int generateRandomFactor();
 
