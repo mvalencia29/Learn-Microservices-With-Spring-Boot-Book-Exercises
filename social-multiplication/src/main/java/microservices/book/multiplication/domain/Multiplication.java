@@ -21,7 +21,7 @@ public final class Multiplication {
 	
 	@Override
 	public String toString() {
-		return "Multiplication : " + factorA + " X " + factorB;
+		return factorA + " X " + factorB;
 	}
 
 }

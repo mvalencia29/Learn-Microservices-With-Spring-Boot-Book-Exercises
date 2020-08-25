@@ -14,7 +14,7 @@ public final class User {
 	
 	@Override
 	public String toString() {
-		return "Alias : " + alias;  
+		return "User : " + alias;  
 	}
 
 }
