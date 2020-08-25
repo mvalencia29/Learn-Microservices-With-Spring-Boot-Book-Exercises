@@ -1,6 +1,6 @@
 package microservices.book.multiplication.domain;
 
-public class Multiplication {
+public final class Multiplication {
 
 	private final int factorA;
 
