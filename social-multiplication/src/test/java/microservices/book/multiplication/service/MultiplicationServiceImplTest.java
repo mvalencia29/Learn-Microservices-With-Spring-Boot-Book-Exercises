@@ -22,7 +22,6 @@ public class MultiplicationServiceImplTest {
 	public void setUp() {
 		// With this call to initMocks we tell Mockito to process the annotations
 		MockitoAnnotations.initMocks(this);
-
 		multiplicationServiceImpl = new MultiplicationServiceImpl(randomGeneratorService);
 	}
 
@@ -36,7 +35,6 @@ public class MultiplicationServiceImplTest {
 		// assert
 		assertThat(multiplication.getFactorA()).isEqualTo(50);
 		assertThat(multiplication.getFactorB()).isEqualTo(30);
-		assertThat(multiplication.getResult()).isEqualTo(1500);
 	}
 
 }
