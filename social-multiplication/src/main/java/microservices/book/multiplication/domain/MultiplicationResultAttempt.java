@@ -8,14 +8,17 @@ public final class MultiplicationResultAttempt {
 	
 	private final int resultAttempt;
 	
-	public MultiplicationResultAttempt(User user, Multiplication multiplication, int resultAttempt) {
+	private final boolean correct;
+	
+	public MultiplicationResultAttempt(User user, Multiplication multiplication, int resultAttempt, boolean correct) {
 		this.user = user;
 		this.multiplication = multiplication;
 		this.resultAttempt = resultAttempt;
+		this.correct = correct;
 	}
 	
     MultiplicationResultAttempt() {
-    	this(null, null, -1);
+    	this(null, null, -1, false);
     }
 	
 	public User getUser() {
