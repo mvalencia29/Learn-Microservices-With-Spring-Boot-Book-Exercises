@@ -33,7 +33,7 @@ public final class MultiplicationResultAttempt {
 		return resultAttempt;
 	}
 	
-	public boolean getCorrect() {
+	public boolean isCorrect() {
 		return correct;
 	}
 	

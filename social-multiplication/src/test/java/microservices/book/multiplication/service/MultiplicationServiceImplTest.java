@@ -37,26 +37,26 @@ public class MultiplicationServiceImplTest {
 		assertThat(multiplication.getFactorA()).isEqualTo(50);
 		assertThat(multiplication.getFactorB()).isEqualTo(30);
 	}
-	
+
 	@Test
 	public void checkCorrectAttemptTest() {
 		Multiplication multiplication = new Multiplication(50, 60);
 		User user = new User("john_doe");
-		MultiplicationResultAttempt attempt = new MultiplicationResultAttempt(user, multiplication, 3000);
-		
+		MultiplicationResultAttempt attempt = new MultiplicationResultAttempt(user, multiplication, 3000, false);
+
 		boolean attemptResult = multiplicationServiceImpl.checkAttempt(attempt);
-		
+
 		assertThat(attemptResult).isTrue();
 	}
-	
+
 	@Test
 	public void checkWrongAttemptTest() {
 		Multiplication multiplication = new Multiplication(50, 60);
 		User user = new User("john_doe");
-		MultiplicationResultAttempt attempt = new MultiplicationResultAttempt(user, multiplication, 3010);
-		
+		MultiplicationResultAttempt attempt = new MultiplicationResultAttempt(user, multiplication, 3010, false);
+
 		boolean attemptResult = multiplicationServiceImpl.checkAttempt(attempt);
-		
+
 		assertThat(attemptResult).isFalse();
 	}
 

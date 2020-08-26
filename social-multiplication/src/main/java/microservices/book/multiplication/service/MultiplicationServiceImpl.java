@@ -1,7 +1,9 @@
 package microservices.book.multiplication.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 import microservices.book.multiplication.domain.Multiplication;
 import microservices.book.multiplication.domain.MultiplicationResultAttempt;
@@ -25,9 +27,16 @@ public class MultiplicationServiceImpl implements MultiplicationService {
 
 	@Override
 	public boolean checkAttempt(MultiplicationResultAttempt multiplicationResultAttempt) {
-		return multiplicationResultAttempt
-				.getResultAttempt() == (multiplicationResultAttempt.getMultiplication().getFactorA()
-						* multiplicationResultAttempt.getMultiplication().getFactorB());
+		boolean correct = multiplicationResultAttempt.getResultAttempt() == multiplicationResultAttempt
+				.getMultiplication().getFactorA() * multiplicationResultAttempt.getMultiplication().getFactorB();
+
+		Assert.isTrue(!multiplicationResultAttempt.isCorrect(), "You can't send an attempt marked as correct!!");
+
+		MultiplicationResultAttempt checkedAttempt = new MultiplicationResultAttempt(
+				multiplicationResultAttempt.getUser(), multiplicationResultAttempt.getMultiplication(),
+				multiplicationResultAttempt.getResultAttempt(), correct);
+
+		return correct;
 	}
 
 }
