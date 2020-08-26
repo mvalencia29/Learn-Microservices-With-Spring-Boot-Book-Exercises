@@ -33,6 +33,10 @@ public final class MultiplicationResultAttempt {
 		return resultAttempt;
 	}
 	
+	public boolean getCorrect() {
+		return correct;
+	}
+	
 	@Override
 	public String toString() {
 		return user.toString() + ", the result of the multiplication : " + multiplication.toString() + ", was : " + resultAttempt;
