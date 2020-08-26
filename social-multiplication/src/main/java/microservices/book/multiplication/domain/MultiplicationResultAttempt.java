@@ -14,6 +14,10 @@ public final class MultiplicationResultAttempt {
 		this.resultAttempt = resultAttempt;
 	}
 	
+    MultiplicationResultAttempt() {
+    	this(null, null, -1);
+    }
+	
 	public User getUser() {
 		return user;
 	}

@@ -10,6 +10,10 @@ public final class Multiplication {
 		this.factorA = factorA;
 		this.factorB = factorB;
 	}
+	
+	public Multiplication() {
+		this(0, 0);
+	}
 
 	public int getFactorA() {
 		return factorA;
@@ -18,7 +22,7 @@ public final class Multiplication {
 	public int getFactorB() {
 		return factorB;
 	}
-	
+
 	@Override
 	public String toString() {
 		return factorA + " X " + factorB;
