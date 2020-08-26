@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import microservices.book.multiplication.domain.Multiplication;
 import microservices.book.multiplication.domain.MultiplicationResultAttempt;
 import microservices.book.multiplication.domain.User;
-import microservices.book.multiplication.response.ResultResponse;
 import microservices.book.multiplication.service.MultiplicationService;
 import org.junit.Before;
 import org.junit.Test;
@@ -35,7 +34,6 @@ public class MultiplicationResultAttemptControllerTest {
 	private MockMvc mvc;
 
 	private JacksonTester<MultiplicationResultAttempt> jsonResult;
-	private JacksonTester<ResultResponse> jsonResponse;
 
 	@Before
 	public void setup() {
@@ -53,18 +51,24 @@ public class MultiplicationResultAttemptControllerTest {
 	}
 
 	void genericParameterizedTest(final boolean correct) throws Exception {
-		
+
 		given(multiplicationService.checkAttempt(any(MultiplicationResultAttempt.class))).willReturn(correct);
 		User user = new User("dsdsd");
 		Multiplication multiplication = new Multiplication(50, 70);
-		MultiplicationResultAttempt attempt = new MultiplicationResultAttempt(user, multiplication, 3500);
+		MultiplicationResultAttempt attempt = new MultiplicationResultAttempt(user, multiplication, 3500, correct);
 
 		MockHttpServletResponse response = mvc.perform(
 				post("/results").contentType(MediaType.APPLICATION_JSON).content(jsonResult.write(attempt).getJson()))
 				.andReturn().getResponse();
 
 		assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
-		assertThat(response.getContentAsString()).isEqualTo(jsonResponse.write(new ResultResponse(correct)).getJson());
+		assertThat(
+				response.getContentAsString())
+						.isEqualTo(
+								jsonResult
+										.write(new MultiplicationResultAttempt(attempt.getUser(),
+												attempt.getMultiplication(), attempt.getResultAttempt(), correct))
+										.getJson());
 	}
 
 }

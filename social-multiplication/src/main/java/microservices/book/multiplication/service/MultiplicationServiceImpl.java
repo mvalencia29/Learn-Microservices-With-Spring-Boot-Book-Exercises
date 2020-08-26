@@ -27,16 +27,8 @@ public class MultiplicationServiceImpl implements MultiplicationService {
 
 	@Override
 	public boolean checkAttempt(MultiplicationResultAttempt multiplicationResultAttempt) {
-		boolean correct = multiplicationResultAttempt.getResultAttempt() == multiplicationResultAttempt
-				.getMultiplication().getFactorA() * multiplicationResultAttempt.getMultiplication().getFactorB();
-
-		Assert.isTrue(!multiplicationResultAttempt.isCorrect(), "You can't send an attempt marked as correct!!");
-
-		MultiplicationResultAttempt checkedAttempt = new MultiplicationResultAttempt(
-				multiplicationResultAttempt.getUser(), multiplicationResultAttempt.getMultiplication(),
-				multiplicationResultAttempt.getResultAttempt(), correct);
-
-		return correct;
+		return multiplicationResultAttempt.getResultAttempt() == multiplicationResultAttempt.getMultiplication()
+				.getFactorA() * multiplicationResultAttempt.getMultiplication().getFactorB();
 	}
 
 }
